@@ -27,3 +27,8 @@ A RoleBinding can also reference a ClusterRole to grant the permissions defined 
 
 For instance, even though the following RoleBinding refers to a ClusterRole, "dave" (the subject, case sensitive) will only be able to read Secrets in the "development" namespace, because the RoleBinding's namespace (in its metadata) is "development".
 
+#
+## Referring to resources
+RBAC refers to resources using exactly the same name that appears in the URL for the relevant API endpoint. Some Kubernetes APIs involve a subresource, such as the logs for a Pod. In this case, pods is the namespaced resource for Pod resources, and log is a subresource of pods. To represent this in an RBAC role, use a slash (/) to delimit the resource and subresource.
+
+You can also refer to resources by name for certain requests through the resourceNames list. When specified, requests can be restricted to individual instances of a resource. 
